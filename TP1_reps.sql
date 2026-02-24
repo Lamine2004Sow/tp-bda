@@ -7,4 +7,7 @@ SELECT *
 FROM section;
 
 
+-- 2. Afficher tous les renseignements sur les cours que l’on peut programmer (relation course)
 
+SELECT * 
+FROM course
