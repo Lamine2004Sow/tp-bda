@@ -67,5 +67,8 @@ WHERE dept_name ='Comp. Sci.' AND credits > 3
 SELECT name, t.dept_name, d.building
 FROM teacher t JOIN department d ON t.dept_name =d.dept_name
  
- 
- 
+-- 13. Afficher tous les ´etudiants ayant suivi au moins un cours en informatique.
+
+SELECT DISTINCT s.ID, s.name 
+FROM student s JOIN takes t ON s.ID =t.ID JOIN course c ON c.course_id = t.course_id 
+WHERE c.dept_name ='Comp. Sci.'
