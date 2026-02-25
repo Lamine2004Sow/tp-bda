@@ -72,3 +72,10 @@ FROM teacher t JOIN department d ON t.dept_name =d.dept_name
 SELECT DISTINCT s.ID, s.name 
 FROM student s JOIN takes t ON s.ID =t.ID JOIN course c ON c.course_id = t.course_id 
 WHERE c.dept_name ='Comp. Sci.'
+
+-- 14. Afficher les noms des ´etudiants ayant suivi un cours dispens´e par un enseignant nomm´e Eistein (´eliminer les doublons).
+
+SELECT DISTINCT s.name
+FROM student s JOIN takes ta ON s.ID =ta.ID JOIN teaches te ON ta.course_id =te.course_id JOIN teacher t ON t.ID =te.ID
+WHERE t.name ='Einstein'
+
