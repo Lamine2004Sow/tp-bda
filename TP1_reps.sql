@@ -17,4 +17,7 @@ FROM course
 SELECT title, dept_name 
 FROM course
 
---
+-- 4. Afficher les noms des d´epartements ainsi que leur budget.
+
+SELECT dept_name, budget
+FROM department
