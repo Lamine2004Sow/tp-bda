@@ -39,4 +39,9 @@ SELECT name
 FROM teacher
 WHERE salary BETWEEN 55000 AND 85000
 
+-- 8. Afficher les noms des d´epartements, en utilisant la relation teacher et ´eliminer les doublons.
+
+SELECT DISTINCT dept_name
+FROM teacher 
+
 
