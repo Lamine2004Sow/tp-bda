@@ -62,4 +62,10 @@ SELECT title
 FROM course
 WHERE dept_name ='Comp. Sci.' AND credits > 3
 
+-- 12. Afficher tous les noms des enseignants ainsi que le nom de leur d´epartement et les noms des bˆatiments qui les h´ebergent.
 
+SELECT name, t.dept_name, d.building
+FROM teacher t JOIN department d ON t.dept_name =d.dept_name
+ 
+ 
+ 
