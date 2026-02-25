@@ -55,3 +55,11 @@ WHERE dept_name= 'Comp. Sci.' AND salary > 65000
 SELECT *
 FROM section
 WHERE semester='Spring' AND year=2010
+
+-- 11. Afficher tous les titres des cours dispens´es par le d´epartement informatique qui ont plus de trois cr´edits.
+
+SELECT title 
+FROM course
+WHERE dept_name ='Comp. Sci.' AND credits > 3
+
+
