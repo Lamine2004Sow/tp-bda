@@ -79,3 +79,9 @@ SELECT DISTINCT s.name
 FROM student s JOIN takes ta ON s.ID =ta.ID JOIN teaches te ON ta.course_id =te.course_id JOIN teacher t ON t.ID =te.ID
 WHERE t.name ='Einstein'
 
+-- 15. Afficher tous les identifiants des cours et les enseignants qui les ont assur´es.
+
+SELECT c.course_id, t.ID
+FROM course c JOIN teaches te ON c.course_id =te.course_id JOIN teacher t ON t.ID =te.ID
+
+
