@@ -84,4 +84,8 @@ WHERE t.name ='Einstein'
 SELECT c.course_id, t.ID
 FROM course c JOIN teaches te ON c.course_id =te.course_id JOIN teacher t ON t.ID =te.ID
 
+-- 16. Afficher le nombre d’inscrits pour chaque enseignement propos´e au printemps 2010.
 
+SELECT COUNT(ta.ID)
+FROM takes ta JOIN section s ON ta.course_id =s.course_id
+WHERE s.semester='Spring' AND s.year=2010
