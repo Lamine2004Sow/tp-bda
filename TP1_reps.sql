@@ -89,3 +89,13 @@ FROM course c JOIN teaches te ON c.course_id =te.course_id JOIN teacher t ON t.I
 SELECT COUNT(ta.ID)
 FROM takes ta JOIN section s ON ta.course_id =s.course_id
 WHERE s.semester='Spring' AND s.year=2010
+
+-- 17. Afficher les noms des d´epartements et les salaires maximum de leurs enseignants.
+
+SELECT dept_name, MAX(t.salary)
+FROM teacher t
+GROUP BY dept_name
+
+
+
+
