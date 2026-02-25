@@ -44,4 +44,8 @@ WHERE salary BETWEEN 55000 AND 85000
 SELECT DISTINCT dept_name
 FROM teacher 
 
+-- 9. Afficher tous les noms des enseignants du d´epartement informatique ayant un salaire sup´erieur strictement `a 65.000 $.
 
+SELECT name 
+FROM teacher
+WHERE dept_name= 'Comp. Sci.' AND salary > 65000
