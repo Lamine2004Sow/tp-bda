@@ -102,6 +102,10 @@ SELECT c.title, COUNT(s.ID)
 FROM student s JOIN takes ta ON s.ID =ta.ID JOIN course c ON ta.course_id=c.course_id
 GROUP BY (c.title)
 
+-- 19. Afficher le nombre total de cours qui ont eu lieu dans chaque bˆatiment, pendant l’automne 2009 et le printemps 2010
 
-
+SELECT s.building, COUNT(s.course_id)
+FROM section s 
+WHERE semester='Autumn' AND year=2009 OR s.semester= 'Spring' AND year=2010
+GROUP BY (building)
 
