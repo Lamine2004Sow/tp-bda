@@ -49,3 +49,9 @@ FROM teacher
 SELECT name 
 FROM teacher
 WHERE dept_name= 'Comp. Sci.' AND salary > 65000
+
+-- 10. Afficher tous les renseignements sur les cours propos´es au printemps 2010 (relation section).
+
+SELECT *
+FROM section
+WHERE semester='Spring' AND year=2010
