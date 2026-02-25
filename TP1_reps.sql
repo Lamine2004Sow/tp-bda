@@ -10,4 +10,11 @@ FROM section;
 -- 2. Afficher tous les renseignements sur les cours que l’on peut programmer (relation course)
 
 SELECT * 
+FROM course 
+
+-- 3. Afficher les titres des cours et les d´epartements qui les proposent.
+
+SELECT title, dept_name 
 FROM course
+
+--
