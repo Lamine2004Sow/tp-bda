@@ -21,3 +21,10 @@ FROM course
 
 SELECT dept_name, budget
 FROM department
+
+-- 5. Afficher tous les noms des enseignants et leur d´epartement.
+
+SELECT name, dept_name
+FROM teacher
+
+
