@@ -27,4 +27,10 @@ FROM department
 SELECT name, dept_name
 FROM teacher
 
+-- 6. Afficher tous les noms des enseignants ayant un salaire sup´erieur strictement `a 65.000 $.
 
+SELECT name
+FROM teacher
+WHERE salary > 65000
+
+-- 
