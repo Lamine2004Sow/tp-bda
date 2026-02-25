@@ -96,6 +96,12 @@ SELECT dept_name, MAX(t.salary)
 FROM teacher t
 GROUP BY dept_name
 
+-- 18. Afficher le nombre d’inscrits pour chaque enseignement propos´e.
+
+SELECT c.title, COUNT(s.ID)
+FROM student s JOIN takes ta ON s.ID =ta.ID JOIN course c ON ta.course_id=c.course_id
+GROUP BY (c.title)
+
 
 
 
