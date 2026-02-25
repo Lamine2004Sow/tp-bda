@@ -33,4 +33,10 @@ SELECT name
 FROM teacher
 WHERE salary > 65000
 
--- 
+-- 7. Afficher les noms des enseignants ayant un salaire compris entre 55.000 $ et 85.000 $.
+
+SELECT name 
+FROM teacher
+WHERE salary BETWEEN 55000 AND 85000
+
+
