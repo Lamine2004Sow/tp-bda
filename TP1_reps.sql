@@ -115,3 +115,10 @@ SELECT c.dept_name, COUNT(s.course_id)
 FROM section s JOIN course c ON s.course_id =c.course_id JOIN department d ON c.dept_name =d.dept_name
 WHERE s.building= d.building
 GROUP BY c.dept_name
+
+-- 21. Afficher les titres des cours propos´es et qui ont eu lieu et les enseignants qui les ont assur´es.
+
+SELECT c.title, t.name
+FROM course c JOIN teaches te ON c.course_id =te.course_id JOIN teacher t ON t.ID= te.ID
+
+
