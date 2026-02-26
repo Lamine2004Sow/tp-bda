@@ -135,4 +135,8 @@ FROM student s JOIN takes ta ON s.ID =ta.ID JOIN course c ON ta.course_id =c.cou
 WHERE s.dept_name != c.dept_name
 GROUP BY (s.name)
 
+-- 24. Pour chaque d´epartement, afficher le nombre total de cr´edits des cours qui ont eu lieu dans ce d´epartement.
 
+SELECT d.dept_name, SUM(c.credits)
+FROM department d JOIN course c ON d.dept_name =c.dept_name
+GROUP BY (d.dept_name)
