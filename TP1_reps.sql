@@ -109,3 +109,9 @@ FROM section s
 WHERE semester='Autumn' AND year=2009 OR s.semester= 'Spring' AND year=2010
 GROUP BY (building)
 
+-- 20. Afficher le nombre total de cours dispens´es par chaque d´epartement et qui ont eu dans le mˆeme bˆatiment qui l’abrite.
+
+SELECT c.dept_name, COUNT(s.course_id)
+FROM section s JOIN course c ON s.course_id =c.course_id JOIN department d ON c.dept_name =d.dept_name
+WHERE s.building= d.building
+GROUP BY c.dept_name
