@@ -121,4 +121,10 @@ GROUP BY c.dept_name
 SELECT c.title, t.name
 FROM course c JOIN teaches te ON c.course_id =te.course_id JOIN teacher t ON t.ID= te.ID
 
+-- 22. Afficher le nombre total de cours qui ont eu lieu pour chacune des p´eriode Summer, Fall et Spring.
+
+SELECT COUNT(course_id)
+FROM section s
+WHERE s.semester ='Spring' OR s.semester='Fall' OR s.semester='Summer'
+GROUP BY (s.semester)
 
