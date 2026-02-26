@@ -128,3 +128,11 @@ FROM section s
 WHERE s.semester ='Spring' OR s.semester='Fall' OR s.semester='Summer'
 GROUP BY (s.semester)
 
+-- 23. Afficher pour chaque ´etudiant le nombre total de cr´edits qu’il a obtenu, en suivant des cours qui n’ont pas ´et´e propos´e par son d´epartement.
+
+SELECT s.name, SUM(credits)
+FROM student s JOIN takes ta ON s.ID =ta.ID JOIN course c ON ta.course_id =c.course_id
+WHERE s.dept_name != c.dept_name
+GROUP BY (s.name)
+
+
