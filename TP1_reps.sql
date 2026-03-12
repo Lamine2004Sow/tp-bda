@@ -1,3 +1,8 @@
+-- TP1 : Quelques fonctions SQL et requêtes
+-- Nom : TAÏBI 
+-- Prénom : Abderrahmane
+-- Numéro étudiant : 12411518
+
 -- Exercice 2 :
 
 -- 1. Afficher la structure de la relation section et son contenu (cours proposés).
