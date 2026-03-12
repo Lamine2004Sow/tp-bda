@@ -44,4 +44,12 @@ SELECT s.ID, s.name
 FROM student s JOIN takes tk ON s.ID=tk.ID
 WHERE tk.year < 2010
 
+-- 6. Afficher tous les enseignants dont les noms commencent par E
+
+SELECT tr.name
+FROM teacher tr
+WHERE tr.name LIKE 'E%'
+
+--
+
 
