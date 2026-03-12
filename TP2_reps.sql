@@ -36,4 +36,12 @@ WHERE teacher.id = teaches.id and student.id = takes.id and (takes.course_id, ta
 GROUP BY teacher.name , student.name) T
 WHERE T.totalcount >= 2 ORDER BY T.teachername
 
+-- 5. Afficher les identifiants et les noms des ´etudiants qui n’ont pas suivi de cours avant 2010.
+
+SELECT s.ID, s.name FROM student s
+MINUS
+SELECT s.ID, s.name
+FROM student s JOIN takes tk ON s.ID=tk.ID
+WHERE tk.year < 2010
+
 
