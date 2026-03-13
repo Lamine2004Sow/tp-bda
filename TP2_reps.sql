@@ -90,5 +90,14 @@ FROM student s NATURAL INNER JOIN takes tk
 WHERE tk.semester = 'Fall'
   AND tk.year = 2009;
   
+-- 12. Afficher les noms des ´etudiants qui ont suivi un cours en automne 2009, en utilisant la clause EXISTS.
+
+SELECT s.name
+FROM student s
+WHERE EXISTS (SELECT *
+              FROM takes tk
+              WHERE tk.ID = s.ID AND tk.semester = 'Fall' AND tk.year = 2009)
+              
+              
 
 
