@@ -69,6 +69,12 @@ ORDER BY salary DESC;
 
 -- 9. Afficher les noms des ´etudiants qui ont suivi un cours en automne 2009, en utilisant la clause IN.
 
+SELECT s.name
+FROM student s
+WHERE s.ID IN (SELECT tk.ID
+               FROM takes tk
+               WHERE tk.semester = 'Fall' AND tk.year = 2009)
+               
 
 
 
