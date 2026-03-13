@@ -83,6 +83,12 @@ WHERE s.ID = SOME (SELECT tk.ID
                FROM takes tk
                WHERE tk.semester = 'Fall'AND tk.year = 2009)
                
-               
+-- 11. Afficher les noms des ´etudiants qui ont suivi un cours en automne 2009, en utilisant la jointure naturelle (NATURAL INNER JOIN ).
+
+SELECT s.name
+FROM student s NATURAL INNER JOIN takes tk
+WHERE tk.semester = 'Fall'
+  AND tk.year = 2009;
+  
 
 
