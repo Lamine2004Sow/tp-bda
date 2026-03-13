@@ -50,6 +50,14 @@ SELECT tr.name
 FROM teacher tr
 WHERE tr.name LIKE 'E%'
 
+--7. Afficher les salaires et les noms des enseignants qui per¸coivent le quatri`eme salaire le plus ´elev´e.
+
+SELECT t1.salary,t1.name
+FROM teacher t1
+WHERE 4=(SELECT COUNT(DISTINCT t2.salary)
+         FROM teacher t2
+         WHERE t2.salary> t1.salary)
+         
 --
 
 
