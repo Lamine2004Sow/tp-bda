@@ -138,4 +138,23 @@ WHERE tk.grade = 'A'
 GROUP BY tr.name
 ORDER BY tot_A DESC;
 
+-- 17. Afficher toutes les paires enseignant-´el`eves o`u un ´el`eve a suivi le cours de l’enseignant, ainsi que le nombre de fois que cet ´el`eve a suivi un cours dispens´e par cet enseignant
+
+SELECT tr.name, s.name, COUNT(*) AS tot
+FROM teacher tr JOIN teaches ts ON tr.ID = ts.ID JOIN takes tk ON (ts.course_id = tk.course_id
+                                                                   AND ts.sec_id = tk.sec_id
+                                                                   AND ts.semester = tk.semester
+                                                                   AND ts.year = tk.year)
+                                                                                                   JOIN student s ON s.ID = tk.ID
+GROUP BY tr.name, s.name
+
+ORDER BY tr.name
+
+
+
+
+
+
+
+
 
