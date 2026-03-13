@@ -126,4 +126,16 @@ FROM teacher tr LEFT JOIN teaches ts ON tr.ID = ts.ID LEFT JOIN takes tk ON (ts.
 GROUP BY tr.name
 ORDER BY tot DESC;
 
+-- 16. Pour chaque enseignant, afficher le nombre total de grades A qu’il a attribu´e.
+
+SELECT tr.name, COUNT(*) AS tot_A
+FROM teacher tr JOIN teaches ts ON tr.ID = ts.ID JOIN takes tk ON (ts.course_id = tk.course_id
+                                                                   AND ts.sec_id = tk.sec_id
+                                                                   AND ts.semester = tk.semester
+                                                                   AND ts.year = tk.year)
+
+WHERE tk.grade = 'A'
+GROUP BY tr.name
+ORDER BY tot_A DESC;
+
 
