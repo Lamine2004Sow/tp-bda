@@ -106,4 +106,16 @@ FROM student s1 JOIN takes t1 ON s1.ID = t1.ID JOIN takes t2 ON
                                                                JOIN student s2 ON s2.ID = t2.ID
 WHERE s1.ID <s2.ID
 
+-- 14. Afficher pour chaque enseignant, qui a effectivement assur´e un cours, le nombre total d’´etudiant qui ont suivi ses cours. Si un ´etudiant a suivi deux cours diff´erents avec le mˆeme enseignant, on le compte deux fois. Trier le r´esultat par ordre d´ecroissant.
+
+SELECT tr.name, COUNT(*) as tot
+FROM teacher tr JOIN teaches ts ON tr.ID = ts.ID JOIN takes tk ON (ts.course_id = tk.course_id
+                                                                   AND ts.sec_id = tk.sec_id
+                                                                   AND ts.semester = tk.semester
+                                                                   AND ts.year = tk.year)
+GROUP BY tr.name
+ORDER BY tot DESC
+
+-- 1
+
 
