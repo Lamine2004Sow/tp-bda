@@ -116,6 +116,14 @@ FROM teacher tr JOIN teaches ts ON tr.ID = ts.ID JOIN takes tk ON (ts.course_id 
 GROUP BY tr.name
 ORDER BY tot DESC
 
--- 1
+-- 15. Afficher pour chaque enseignant, mˆeme s’il n’a pas assur´e de cours, le nombre total d’´etudiant qui ont suivi ses cours. Si un ´etudiant a suivi deux fois un cours avec le mˆeme enseignant, on le compte deux fois. Trier le r´esultat par ordre d´ecroissant
+
+SELECT tr.name, COUNT(tk.ID) AS tot 
+FROM teacher tr LEFT JOIN teaches ts ON tr.ID = ts.ID LEFT JOIN takes tk ON (ts.course_id = tk.course_id
+                                                                             AND ts.sec_id = tk.sec_id
+                                                                             AND ts.semester = tk.semester
+                                                                             AND ts.year = tk.year)
+GROUP BY tr.name
+ORDER BY tot DESC;
 
 
