@@ -124,7 +124,7 @@ FROM teacher tr LEFT JOIN teaches ts ON tr.ID = ts.ID LEFT JOIN takes tk ON (ts.
                                                                              AND ts.semester = tk.semester
                                                                              AND ts.year = tk.year)
 GROUP BY tr.name
-ORDER BY tot DESC;
+ORDER BY tot DESC
 
 -- 16. Pour chaque enseignant, afficher le nombre total de grades A qu’il a attribu´e.
 
@@ -136,7 +136,7 @@ FROM teacher tr JOIN teaches ts ON tr.ID = ts.ID JOIN takes tk ON (ts.course_id 
 
 WHERE tk.grade = 'A'
 GROUP BY tr.name
-ORDER BY tot_A DESC;
+ORDER BY tot_A DESC
 
 -- 17. Afficher toutes les paires enseignant-´el`eves o`u un ´el`eve a suivi le cours de l’enseignant, ainsi que le nombre de fois que cet ´el`eve a suivi un cours dispens´e par cet enseignant
 
@@ -150,9 +150,18 @@ GROUP BY tr.name, s.name
 
 ORDER BY tr.name
 
+-- 18. Afficher toutes les paires enseignant-´el`eve o`u un ´el`eve a suivi au moins deux cours dispens´e par l’enseignant en question
 
+SELECT tr.name, s.name, COUNT(*) AS total_courses
+FROM teacher tr JOIN teaches ts ON tr.ID = ts.ID JOIN takes tk ON (ts.course_id = tk.course_id
+                                                                   AND ts.sec_id = tk.sec_id
+                                                                   AND ts.semester = tk.semester
+                                                                   AND ts.year = tk.year)
+                                                                                                JOIN student s ON s.ID = tk.ID
+GROUP BY tr.name, s.name
 
-
+HAVING COUNT(*) >= 2
+ORDER BY tr.name
 
 
 
