@@ -58,6 +58,17 @@ WHERE 4=(SELECT COUNT(DISTINCT t2.salary)
          FROM teacher t2
          WHERE t2.salary> t1.salary)
          
---
+--8. Afficher les noms et les salaires des trois enseignants qui per¸coivent les salaires les moins ´elev´es. Les afficher par ordre d´ecroissant.
+
+SELECT name, salary
+FROM (SELECT name, salary
+      FROM teacher
+      ORDER BY salary ASC)
+WHERE ROWNUM <= 3
+ORDER BY salary DESC;
+
+-- 9. Afficher les noms des ´etudiants qui ont suivi un cours en automne 2009, en utilisant la clause IN.
+
+
 
 
