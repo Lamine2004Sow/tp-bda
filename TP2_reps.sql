@@ -98,6 +98,12 @@ WHERE EXISTS (SELECT *
               FROM takes tk
               WHERE tk.ID = s.ID AND tk.semester = 'Fall' AND tk.year = 2009)
               
-              
+-- 13. Afficher toutes les paires des ´etudiants qui ont suivi au moins un cours ensemble
+
+SELECT s1.name, s2.name
+FROM student s1 JOIN takes t1 ON s1.ID = t1.ID JOIN takes t2 ON
+                                                               (t1.course_id = t2.course_id AND t1.sec_id = t2.sec_id AND t1.semester = t2.semester AND t1.year = t2.year) 
+                                                               JOIN student s2 ON s2.ID = t2.ID
+WHERE s1.ID <s2.ID
 
 
