@@ -55,6 +55,29 @@ def get_attribute_closure(dependencies: list, attributes: set) -> set:
             break
             
     return closure
+    
+    
+# 5. ´Ecrire une fonction qui permet, ´etant donn´e un ensemble de d´ependances fonctionnelles F , de retourner la clˆoture de F . Rappel : la clˆoture de F est un ensemble constitu´e de toutes les d´ependances fonctionnelles que l’on peut d´eduire de F .
+
+def get_dependencies_closure(dependencies: list) -> list:
+
+    all_attributes =set()
+    for left_side,right_side in dependencies:
+        all_attributes =all_attributes|left_side|right_side
+        
+    closure_f= []
+    
+    for potential_left in powerSet(all_attributes):
+        
+
+        determined_attributes=get_attribute_closure(dependencies, potential_left)
+
+        for potential_right in powerSet(determined_attributes
+            closure_f.append([set(potential_left), set(potential_right)])
+            
+    return closure_f
+
+#6. Ecrire une fonction qui permet, ´etant donn´ee un ensemble de d´ependances fonctionnelles F et deux ensembles d’attributs α et β , de retourner vrai si α d´etermine fonctionnement β.
 
 
 
