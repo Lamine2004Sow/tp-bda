@@ -95,9 +95,6 @@ def is_super_key(dependencies:list,relation: set,attributes:set) -> bool:
 
 #8. ´Ecrire une fonction qui permet, ´etant donn´ee un ensemble de d´ependances fonctionnelles F , une relation R et un ensemble d’attributs K, de retourner vrai si K est une cl´e candidate.
 
-# ==========================================
-# Question 8 : Vérifier si un ensemble d'attributs est une Clé Candidate
-# ==========================================
 
 def is_candidate_key(dependencies: list, relation: set, attributes: set) -> bool:
 
