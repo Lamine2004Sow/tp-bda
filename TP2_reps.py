@@ -80,4 +80,9 @@ def get_dependencies_closure(dependencies: list) -> list:
 #6. Ecrire une fonction qui permet, ´etant donn´ee un ensemble de d´ependances fonctionnelles F et deux ensembles d’attributs α et β , de retourner vrai si α d´etermine fonctionnement β.
 
 
+def is_valid_dependency(dependencies: list,left_side:set, right_side: set)-> bool:
+    closure_of_left= get_attribute_closure(dependencies, left_side)
+    return right_side.issubset(closure_of_left)
+
+
 
