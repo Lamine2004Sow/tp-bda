@@ -72,7 +72,7 @@ def get_dependencies_closure(dependencies: list) -> list:
 
         determined_attributes=get_attribute_closure(dependencies, potential_left)
 
-        for potential_right in powerSet(determined_attributes
+        for potential_right in powerSet(determined_attributes):
             closure_f.append([set(potential_left), set(potential_right)])
             
     return closure_f
@@ -141,4 +141,74 @@ def get_all_super_keys(dependencies: list, relation: set)->list:
     return all_super_keys
     
 #11.Ecrire une fonction qui permet, ´etant donn´ee un ensemble de d´ependances fonctionnelles F et une relation R, de retourner une cl´e candidate
+
+def get_one_candidate_key(dependencies: list, relation:set) ->set:
+
+    current_key=set(relation) 
+    
+    while not is_candidate_key(dependencies, relation, current_key):
+        for attribute in current_key:
+            test_subset= set(current_key)
+            test_subset.remove(attribute)
+
+            if is_super_key(dependencies, relation, test_subset):
+                current_key.remove(attribute)
+                break
+    return current_key
+
+
+#12.Ecrire une fonction qui permet, ´etant donn´ee une relation R et un ensemble de d´ependances fonctionnelles F , de retourner vrai si cette relation est en BCNF.
+
+def is_bcnf_relation(dependencies: list, relation: set) -> tuple:
+    for subset_x in powerSet(relation):
+        closure_x =get_attribute_closure(dependencies, subset_x)
+
+        determined_y=closure_x.difference(subset_x)
+        intersection_y_r =determined_y.intersection(relation)
+
+        if not is_super_key(dependencies, relation, subset_x) and len(intersection_y_r) > 0:
+
+            return False, [subset_x,intersection_y_r]
+            
+    return True,[set(), set()]
+
+
+#13. Ecrire une fonction qui permet, ´etant donn´ee un ensemble de relations T et une liste de d´ependances fonctionnelles F , de retourner vrai si le sch´ema d´efini par ces relations est en BCNF.
+
+def is_bcnf_schema(dependencies:list, list_of_relations: list) -> tuple:
+
+    for relation in list_of_relations:
+        is_bcnf, violation=is_bcnf_relation(dependencies, relation)
+        if not is_bcnf:
+            return False, relation
+    return True, set()
+
+
+#14. Ecrire une fonction qui permet, ´etant donn´ee un ensemble de d´ependances fonctionnelles F et un ensemble de relations T , d’impl´ementer l’algorithme de d´ecomposition en BCNF, vu en cours.
+
+def compute_bcnf_decomposition(dependencies: list, list_of_relations: list) -> list:
+    result_schema= list(list_of_relations)
+    while True:
+        previous_size =len(result_schema)
+        
+        for relation in result_schema:
+            is_bcnf, violation = is_bcnf_relation(dependencies, relation)
+
+            if not is_bcnf:
+                left_side, right_side = violation[0], violation[1]
+
+                relation_1 = left_side.union(right_side)
+
+                relation_2 = relation.difference(right_side)
+                
+                if relation_1 not in result_schema:
+                    result_schema.append(relation_1)
+                if relation_2 not in result_schema:
+                    result_schema.append(relation_2)
+
+                result_schema.remove(relation)
+                break
+        if len(result_schema) == previous_size:
+            break   
+    return result_schema
 
