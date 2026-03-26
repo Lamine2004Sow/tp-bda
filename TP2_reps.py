@@ -42,3 +42,19 @@ def powerSet (inputset:"set"):
 #4. ´Ecrire une fonction qui permet, ´etant donn´e un ensemble de d´ependances fonctionnelles F et un ensemble d’attributs K, de retourner la fermeture (clˆoture) de K.
 
 
+def get_attribute_closure(dependencies: list, attributes: set) -> set:
+    closure = set(attributes)
+    
+    while True:
+        previous_size = len(closure)
+        
+        for left_side, right_side in dependencies:
+            if left_side.issubset(closure):
+                closure = closure | right_side 
+        if len(closure) == previous_size:
+            break
+            
+    return closure
+
+
+
