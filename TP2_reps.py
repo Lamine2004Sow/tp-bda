@@ -111,4 +111,18 @@ def is_candidate_key(dependencies: list, relation: set, attributes: set) -> bool
             
     return True
 
+#9. ´Ecrire une fonction qui, ´etant donn´e une relation R et un ensemble de d´ependances fonctionnelles F , de retourner la liste de toutes les cl´es candidates
+
+def get_all_candidate_keys(dependencies: list, relation: set) -> list:
+
+    all_candidate_keys=[]
+
+    all_possible_subsets= powerSet(relation)
+
+    for subset in all_possible_subsets:
+        if is_candidate_key(dependencies,relation,subset):
+        	all_candidate_keys.append(subset)
+            
+    return all_candidate_keys
+
 
