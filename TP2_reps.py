@@ -125,4 +125,20 @@ def get_all_candidate_keys(dependencies: list, relation: set) -> list:
             
     return all_candidate_keys
 
+#10. ´Ecrire une fonction qui, ´etant donn´e une relation R et un ensemble de d´ependances fonctionnelles F , de retourner la liste de toutes les super-cl´es
+
+
+def get_all_super_keys(dependencies: list, relation: set)->list:
+    all_super_keys=[]
+
+    all_possible_subsets =powerSet(relation)
+    
+    for subset in all_possible_subsets:
+        if is_super_key(dependencies,relation, subset):
+
+            all_super_keys.append( subset)
+            
+    return all_super_keys
+    
+#11.Ecrire une fonction qui permet, ´etant donn´ee un ensemble de d´ependances fonctionnelles F et une relation R, de retourner une cl´e candidate
 
