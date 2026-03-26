@@ -80,9 +80,19 @@ def get_dependencies_closure(dependencies: list) -> list:
 #6. Ecrire une fonction qui permet, ´etant donn´ee un ensemble de d´ependances fonctionnelles F et deux ensembles d’attributs α et β , de retourner vrai si α d´etermine fonctionnement β.
 
 
-def is_valid_dependency(dependencies: list,left_side:set, right_side: set)-> bool:
+def is_valid_dependency(dependencies: list,left_side:set, right_side: set)-> bool:	
     closure_of_left= get_attribute_closure(dependencies, left_side)
     return right_side.issubset(closure_of_left)
 
+#7.7. ´Ecrire une fonction qui permet, ´etant donn´ee un ensemble de d´ependances fonctionnelles F , une relation R et un ensemble d’attributs K, de retourner vrai si K est une super-cl´e.
+
+
+def is_super_key(dependencies:list,relation: set,attributes:set) -> bool:
+
+    closure=get_attribute_closure(dependencies, attributes)
+    return relation.issubset( closure)
+
+
+#8. ´Ecrire une fonction qui permet, ´etant donn´ee un ensemble de d´ependances fonctionnelles F , une relation R et un ensemble d’attributs K, de retourner vrai si K est une cl´e candidate.
 
 
