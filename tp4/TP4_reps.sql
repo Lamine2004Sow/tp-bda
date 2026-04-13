@@ -197,3 +197,69 @@ BEGIN
     END LOOP;
 END;
 /
+
+-- ============================================================
+-- EXERCICE 3 : Package de gestion des clients (avec surcharge)
+-- ============================================================
+
+CREATE TABLE client (
+    id      NUMBER(10)    NOT NULL,
+    nom     VARCHAR2(50)  NOT NULL,
+    prenom  VARCHAR2(50)  NOT NULL,
+    adresse VARCHAR2(100),
+    tel     VARCHAR2(20),
+    CONSTRAINT client_pk PRIMARY KEY (id)
+);
+
+-- Spécification du package
+CREATE OR REPLACE PACKAGE gestion_clients AS
+    -- Version complète (id, nom, prenom, adresse, tel)
+    PROCEDURE ajouterClient(p_id NUMBER, p_nom VARCHAR2, p_prenom VARCHAR2,
+                            p_adresse VARCHAR2, p_tel VARCHAR2);
+    -- Version minimale (id, nom, prenom)
+    PROCEDURE ajouterClient(p_id NUMBER, p_nom VARCHAR2, p_prenom VARCHAR2);
+END gestion_clients;
+/
+
+-- Corps du package
+CREATE OR REPLACE PACKAGE BODY gestion_clients AS
+
+    PROCEDURE ajouterClient(p_id NUMBER, p_nom VARCHAR2, p_prenom VARCHAR2,
+                            p_adresse VARCHAR2, p_tel VARCHAR2) IS
+    BEGIN
+        INSERT INTO client VALUES (p_id, p_nom, p_prenom, p_adresse, p_tel);
+        COMMIT;
+        DBMS_OUTPUT.PUT_LINE('Client ajouté : ' || p_nom || ' ' || p_prenom);
+    EXCEPTION
+        WHEN DUP_VAL_ON_INDEX THEN
+            DBMS_OUTPUT.PUT_LINE('Erreur : un client avec l''id ' || p_id || ' existe déjà.');
+        WHEN VALUE_ERROR THEN
+            DBMS_OUTPUT.PUT_LINE('Erreur : valeur invalide pour un des attributs.');
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Erreur inattendue : ' || SQLERRM);
+    END ajouterClient;
+
+    PROCEDURE ajouterClient(p_id NUMBER, p_nom VARCHAR2, p_prenom VARCHAR2) IS
+    BEGIN
+        INSERT INTO client VALUES (p_id, p_nom, p_prenom, NULL, NULL);
+        COMMIT;
+        DBMS_OUTPUT.PUT_LINE('Client ajouté : ' || p_nom || ' ' || p_prenom);
+    EXCEPTION
+        WHEN DUP_VAL_ON_INDEX THEN
+            DBMS_OUTPUT.PUT_LINE('Erreur : un client avec l''id ' || p_id || ' existe déjà.');
+        WHEN VALUE_ERROR THEN
+            DBMS_OUTPUT.PUT_LINE('Erreur : valeur invalide pour un des attributs.');
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Erreur inattendue : ' || SQLERRM);
+    END ajouterClient;
+
+END gestion_clients;
+/
+
+-- Tests
+BEGIN
+    gestion_clients.ajouterClient(1, 'Dupont', 'Jean', '12 rue de Paris', '0612345678');
+    gestion_clients.ajouterClient(2, 'Martin', 'Sophie');
+    gestion_clients.ajouterClient(1, 'Durand', 'Paul'); -- DUP_VAL_ON_INDEX
+END;
+/
